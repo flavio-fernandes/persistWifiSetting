@@ -1,4 +1,4 @@
-//#define DEBUG 1
+#define DEBUG 1
 
 #include <WiFi.h>
 #include "wifiConfig.h"

@@ -6,9 +6,9 @@
 #include <Esp.h>
 
 #define DEFAULT_WIFIMANAGER_PORTAL_TIMEOUT 300  /* 5 minutes, in seconds */
-//#define DEFAULT_WIFIMANAGER_PORTAL_IP IPAddress(192,168,4,1)
-//#define DEFAULT_WIFIMANAGER_PORTAL_GW IPAddress(192,168,4,1)
-//#define DEFAULT_WIFIMANAGER_PORTAL_MASK IPAddress(255,255,255,0)
+#define DEFAULT_WIFIMANAGER_PORTAL_IP IPAddress(10,0,1,1)
+#define DEFAULT_WIFIMANAGER_PORTAL_GW IPAddress(10,0,1,1)
+#define DEFAULT_WIFIMANAGER_PORTAL_MASK IPAddress(255,255,255,0)
 #define ESP_BOARD_LED 13  // https://learn.adafruit.com/adafruit-huzzah32-esp32-feather?view=all#pinouts
 static const size_t _ATTR_MAX_LEN = 40;
 static const char* const PREFERENCES_NAME = "myPrefs";
@@ -91,7 +91,8 @@ void  wifiConfig_init() {
   char mqtt_topic[_ATTR_MAX_LEN] = DEFAULT_MQTT_TOPIC; preferences.getString(ATTR_MQTT_TOPIC, mqtt_topic, sizeof(mqtt_topic));
 
   // Use attrValidSave as the flag to indicate whether we need to kick off WiFiManager portal or not
-  if (preferences.getString(attrValidSave.c_str()) != attrValidSave) {
+  if (true ||  // HACK TO FORCE PORTAL TO START EVERY TIME AND REPODUCE BUG
+      preferences.getString(attrValidSave.c_str()) != attrValidSave) {
 #ifdef ESP_BOARD_LED
     digitalWrite(ESP_BOARD_LED, HIGH);
 #endif
@@ -101,7 +102,7 @@ void  wifiConfig_init() {
     wifiManager.setBreakAfterConfig(true /*shouldBreak*/);
 
     //set custom ip for portal
-    //wifiManager.setAPStaticIPConfig(DEFAULT_WIFIMANAGER_PORTAL_IP, DEFAULT_WIFIMANAGER_PORTAL_GW, DEFAULT_WIFIMANAGER_PORTAL_MASK); // buggy
+    wifiManager.setAPStaticIPConfig(DEFAULT_WIFIMANAGER_PORTAL_IP, DEFAULT_WIFIMANAGER_PORTAL_GW, DEFAULT_WIFIMANAGER_PORTAL_MASK); // buggy
 
     //WiFiManagerParameter custom_wifi_ssid(ATTR_WIFI_SSID, "ssid (to be saved)", wifi_ssid, sizeof(wifi_ssid));
     WiFiManagerParameter custom_wifi_pass(ATTR_WIFI_PASS, "ssid password (to be saved)", wifi_pass, sizeof(wifi_pass), " type=\"password\"");
