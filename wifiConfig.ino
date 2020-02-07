@@ -146,7 +146,7 @@ void  wifiConfig_init() {
     WiFiManagerParameter** parameters = wifiManager.getParameters();
     int parametersCount = wifiManager.getParametersCount();
     for (int i = 0; i < parametersCount; ++i) {
-      /*const*/ WiFiManagerParameter& p = *parameters[i];
+      const WiFiManagerParameter& p = *parameters[i];
 #ifdef DEBUG
       Serial.printf("id: %s value: %s valueLen: %d label: %s\n",
 		    p.getID(), p.getValue(), p.getValueLength(), p.getLabel());
