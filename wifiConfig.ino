@@ -105,12 +105,12 @@ void  wifiConfig_init() {
 
     preferences.putString(ATTR_WIFI_SSID, wifiManager.getWiFiSSID(true /*persistent*/));
     preferences.putString(ATTR_WIFI_PASS, wifiManager.getWiFiPass(true /*persistent*/));
-#ifdef DEBUG
+
     Serial.printf("wifiManager id: %s value: %s\n", ATTR_WIFI_SSID, preferences.getString(ATTR_WIFI_SSID).c_str());
     Serial.printf("**BUG** wifiManager id: %s value: %s\n", ATTR_WIFI_PASS, preferences.getString(ATTR_WIFI_PASS).c_str());
     Serial.printf("**BUG** wifiManager id: %s value: %s\n", ATTR_WIFI_PASS, wifiManager.getWiFiPass(true).c_str());
     Serial.printf("**BUG** wifiManager id: %s value: %s\n", ATTR_WIFI_PASS, wifiManager.getWiFiPass(false).c_str());
-#endif
+    Serial.printf("**HACKING** wifiManager getPassword value: %s\n", wifiManager.getPassword().c_str());
 
     WiFiManagerParameter** parameters = wifiManager.getParameters();
     int parametersCount = wifiManager.getParametersCount();
