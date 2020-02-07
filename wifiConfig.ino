@@ -6,9 +6,14 @@
 #include <Esp.h>
 
 #define DEFAULT_WIFIMANAGER_PORTAL_TIMEOUT 300  /* 5 minutes, in seconds */
-#define DEFAULT_WIFIMANAGER_PORTAL_IP IPAddress(10,0,1,1)
-#define DEFAULT_WIFIMANAGER_PORTAL_GW IPAddress(10,0,1,1)
-#define DEFAULT_WIFIMANAGER_PORTAL_MASK IPAddress(255,255,255,0)
+
+//#define DEFAULT_WIFIMANAGER_PORTAL_IP IPAddress(10,0,1,1)
+//#define DEFAULT_WIFIMANAGER_PORTAL_GW IPAddress(10,0,1,1)
+//#define DEFAULT_WIFIMANAGER_PORTAL_MASK IPAddress(255,255,255,0)
+IPAddress DEFAULT_WIFIMANAGER_PORTAL_IP(10,0,1,2);
+IPAddress DEFAULT_WIFIMANAGER_PORTAL_GW(10,0,1,2);
+IPAddress DEFAULT_WIFIMANAGER_PORTAL_MASK(255,255,255,0);
+
 #define ESP_BOARD_LED 13  // https://learn.adafruit.com/adafruit-huzzah32-esp32-feather?view=all#pinouts
 static const size_t _ATTR_MAX_LEN = 40;
 static const char* const PREFERENCES_NAME = "myPrefs";
