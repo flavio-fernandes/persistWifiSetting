@@ -1,4 +1,4 @@
-//#define DEBUG 1
+#define DEBUG 1
 
 #include <WiFi.h>
 #include "wifiConfig.h"
@@ -11,9 +11,9 @@ void setup() {
   const WifiConfigData& cnf = wifiConfig_get();
 
   Serial.printf("ssid %s pass %s\n", cnf.wifiSsid.c_str(), cnf.wifiPass.c_str());
-  Serial.printf("mqttServer %s mqttPort %u\n", cnf.mqttServer.c_str(), (unsigned int) cnf.mqttPort);
-  Serial.printf("mqttUsername %s mqttPassword %s\n", cnf.mqttUsername.c_str(), cnf.mqttPassword.c_str());
-  Serial.printf("mqttTopic prefix %s\n", cnf.mqttTopic.c_str());
+  //Serial.printf("mqttServer %s mqttPort %u\n", cnf.mqttServer.c_str(), (unsigned int) cnf.mqttPort);
+  //Serial.printf("mqttUsername %s mqttPassword %s\n", cnf.mqttUsername.c_str(), cnf.mqttPassword.c_str());
+  //Serial.printf("mqttTopic prefix %s\n", cnf.mqttTopic.c_str());
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(cnf.wifiSsid.c_str(), cnf.wifiPass.c_str());
